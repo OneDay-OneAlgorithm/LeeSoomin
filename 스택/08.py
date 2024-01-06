@@ -4,19 +4,15 @@ from collections import deque
 
 def solution(s):
   stack = deque([])
-  for i in s:
-    stack.append(i)
-  answer = 0
   
-  while stack:
-    cur = stack.popleft()
-
+  for cur in s:
     if cur == '(':
-      answer += 1
+      stack.append(cur)
     elif cur == ')':
-      answer -= 1
+      if stack:
+        stack.pop()
   
-  if answer == 0:
-    return True
-  else: 
+  if stack:
     return False
+  else: 
+    return True
